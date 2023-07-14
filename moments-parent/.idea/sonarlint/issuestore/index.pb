@@ -63,10 +63,6 @@ Horder-service/src/main/java/com/moments/orderservice/util/MapObject.java,9\8\9
 Sorder-service/src/main/java/com/moments/orderservice/dto/ProductoPedidoRequest.java,9\a\9a5518c2f261602b6529f5c5f003db9e0849210e
 z
 Jorder-service/src/main/java/com/moments/orderservice/config/WebConfig.java,6\0\602150019c4d1867f71343751c2c02885d191ffd
-‹
-[product-service/src/main/java/com/moments/productservice/controller/ProductoController.java,0\a\0a83e5baf5ee8818e6abbdbcefc994aaee8ae2d4
-{
-Korder-service/src/main/java/com/moments/orderservice/dto/PedidoRequest.java,f\f\ff99c697f4d9e1d3d7eecdbe56e3aa6f4e15bfed
 {
 Kcatalog-service/src/main/java/com/moments/catalogservice/model/Cliente.java,e\3\e345eab2bef84b8526ad9bc4b2ae090c59a6a7f9
 ~
@@ -75,8 +71,6 @@ Norder-service/src/main/java/com/moments/orderservice/model/ProductoPedido.java
 Zcatalog-service/src/main/java/com/moments/catalogservice/repository/ClienteRepository.java,7\2\72b8a4887e7760c7ef2d6ad26b5c4dc2626c62cd
 „
 Tcatalog-service/src/main/java/com/moments/catalogservice/service/ClienteService.java,f\5\f547ebbf6f840fe9299b0fc04861e0e0270e1016
-
-Oorder-service/src/main/java/com/moments/orderservice/service/PedidoService.java,b\e\be9bd6c0a8366f4f582c608c410e01f53859bca9
 …
 Uorder-service/src/main/java/com/moments/orderservice/controller/PedidoController.java,6\e\6ed677681092e81b7ce13a6dd49106756d9f5cfe
 ~

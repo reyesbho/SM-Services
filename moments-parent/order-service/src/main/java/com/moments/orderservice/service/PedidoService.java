@@ -15,10 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class PedidoService {
@@ -110,7 +107,10 @@ public class PedidoService {
         List<ProductoPedido> productosEntity = new ArrayList<>();
         newPedido.getProductos().forEach(productoDto -> {
             Producto productoEntity = this.productoRepository.findById(productoDto.getIdProducto()).orElse(new Producto(productoDto.getIdProducto()));
-            Sabor saborEntity = this.saborRepository.findById(productoDto.getIdSabor()).orElse(new Sabor(productoDto.getIdSabor()));
+            Sabor saborEntity = null;
+            if(Objects.nonNull(productoDto.getIdSabor())){
+                saborEntity = this.saborRepository.findById(productoDto.getIdSabor()).orElse(null);
+            }
             ProductoTipo productoTipoEntity = this.productoTipoRepository.findById(productoDto.getIdTipoProducto()).orElse(new ProductoTipo(productoDto.getIdTipoProducto()));
 
             ProductoPedido producto=ProductoPedido.builder()

@@ -41,8 +41,6 @@ x
 Horder-service/src/main/java/com/moments/orderservice/model/Producto.java,2\b\2b1b4f892874efb0d619ffcc72c692bcafb2276d
 ‹
 [order-service/src/main/java/com/moments/orderservice/repository/ProductoTipoRepository.java,3\9\3997ea0ca542c98a88cda1c73cb5dadce93cf1c0
-‹
-[product-service/src/main/java/com/moments/productservice/controller/ProductoController.java,0\a\0a83e5baf5ee8818e6abbdbcefc994aaee8ae2d4
 z
 Jorder-service/src/main/java/com/moments/orderservice/config/WebConfig.java,6\0\602150019c4d1867f71343751c2c02885d191ffd
 „
@@ -67,12 +65,8 @@ Sorder-service/src/main/java/com/moments/orderservice/dto/ProductoPedidoRequest.
 [order-service/src/main/java/com/moments/orderservice/exception/EntityNotFoundException.java,1\e\1e43df36ccedf699e1b2ee73a6496e48c7e2e00d
 …
 Uorder-service/src/main/java/com/moments/orderservice/controller/PedidoController.java,6\e\6ed677681092e81b7ce13a6dd49106756d9f5cfe
-{
-Korder-service/src/main/java/com/moments/orderservice/dto/PedidoRequest.java,f\f\ff99c697f4d9e1d3d7eecdbe56e3aa6f4e15bfed
 w
 Gorder-service/src/main/java/com/moments/orderservice/model/Cliente.java,4\9\49499a2f61c5d3017c06674b44166ab99578830b
-
-Oorder-service/src/main/java/com/moments/orderservice/service/PedidoService.java,b\e\be9bd6c0a8366f4f582c608c410e01f53859bca9
 ~
 Norder-service/src/main/java/com/moments/orderservice/model/ProductoPedido.java,f\3\f34c12d9e0fa73a529fe98edbe2e93b674835f15
 {
