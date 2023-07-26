@@ -37,3 +37,5 @@ build/
 ### Mac OS ###
 .DS_Store
 moments-parent/.idea/
+moments-parent/postgres-data-keycloak/
+moments-parent/postgres-data-moments/
