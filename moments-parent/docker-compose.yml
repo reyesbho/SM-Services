@@ -19,7 +19,7 @@ services:
         container_name: keycloak-server
         image: quay.io/keycloak/keycloak:latest
         ports: 
-           - 8181:8080
+           - 8080:8080
         environment:
             - KC_DB=postgres
             - KC_DB_USERNAME=postgres
@@ -109,7 +109,7 @@ services:
         build: /api-gateway
         image: api-gateway
         ports: 
-           - 8080:8080
+           - 8181:8080
         environment:
             - EUREKA_ZONE=http://discovery-server:8761/eureka
             - EUREKA_HOST=http://discovery-server:8761
