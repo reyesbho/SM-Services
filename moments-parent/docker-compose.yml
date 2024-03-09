@@ -1,37 +1,37 @@
 version: '3.9'
 
 services:
-    keycloak-db:
-        container_name: keycloak-db
-        image: postgres:15.3
-        ports:
-           - 5433:5432/tcp
-        environment:
-            - POSTGRES_PASSWORD=11620234Luna!
-            - POSTGRES_DB=keycloakdb
-            - POSTGRES_USER=postgres
-            - DB_HOST=localhost
-            - PGDATA=/var/lib/postgresql/data
-        volumes:
-            - postgres-keycloak:/var/lib/postgresql/data
+#    keycloak-db:
+#        container_name: keycloak-db
+#        image: postgres:15.3
+#        ports:
+#           - 5433:5432/tcp
+#        environment:
+#            - POSTGRES_PASSWORD=11620234Luna!
+#            - POSTGRES_DB=keycloakdb
+#            - POSTGRES_USER=postgres
+#            - DB_HOST=localhost
+#            - PGDATA=/var/lib/postgresql/data
+#        volumes:
+#            - postgres-keycloak:/var/lib/postgresql/data
             
-    keycloak-server:
-        container_name: keycloak-server
-        image: quay.io/keycloak/keycloak:latest
-        ports: 
-           - 8080:8080
-        environment:
-            - KC_DB=postgres
-            - KC_DB_USERNAME=postgres
-            - KC_DB_PASSWORD=11620234Luna!
-            - KC_DB_URL=jdbc:postgresql://keycloak-db:5432/keycloakdb
-            - KC_DB_SCHEMA=public
-            - KEYCLOAK_ADMIN=admin
-            - KEYCLOAK_ADMIN_PASSWORD=admin
-        command: 
-            - start-dev
-        depends_on:
-            - keycloak-db
+#    keycloak-server:
+#        container_name: keycloak-server
+#        image: quay.io/keycloak/keycloak:latest
+#        ports:
+#           - 8080:8080
+#        environment:
+#            - KC_DB=postgres
+#            - KC_DB_USERNAME=postgres
+#            - KC_DB_PASSWORD=11620234Luna!
+#            - KC_DB_URL=jdbc:postgresql://keycloak-db:5432/keycloakdb
+#            - KC_DB_SCHEMA=public
+#            - KEYCLOAK_ADMIN=admin
+#            - KEYCLOAK_ADMIN_PASSWORD=admin
+#        command:
+#            - start-dev
+#        depends_on:
+#            - keycloak-db*/
     
     moments-db:
         container_name: moments-db
@@ -113,11 +113,11 @@ services:
         environment:
             - EUREKA_ZONE=http://discovery-server:8761/eureka
             - EUREKA_HOST=http://discovery-server:8761
-            - KEYCLOAK_TOKEN_URL=http://keycloak-server:8080/realms/spring-boot-microservices-realm
+            #- KEYCLOAK_TOKEN_URL=http://keycloak-server:8080/realms/spring-boot-microservices-realm
         depends_on:
             - moments-db
             - discovery-server
-            - keycloak-server
+            #- keycloak-server
 
 volumes:
   postgres-keycloak:
