@@ -1,0 +1,126 @@
+version: '3.9'
+
+services:
+    keycloak-db:
+        container_name: keycloak-db
+        image: postgres:15.3
+        ports:
+           - 5433:5432/tcp
+        environment:
+            - POSTGRES_PASSWORD=11620234Luna!
+            - POSTGRES_DB=keycloakdb
+            - POSTGRES_USER=postgres
+            - DB_HOST=localhost
+            - PGDATA=/var/lib/postgresql/data
+        volumes:
+            - postgres-keycloak:/var/lib/postgresql/data
+            
+    keycloak-server:
+        container_name: keycloak-server
+        image: quay.io/keycloak/keycloak:latest
+        ports: 
+           - 8080:8080
+        environment:
+            - KC_DB=postgres
+            - KC_DB_USERNAME=postgres
+            - KC_DB_PASSWORD=11620234Luna!
+            - KC_DB_URL=jdbc:postgresql://keycloak-db:5432/keycloakdb
+            - KC_DB_SCHEMA=public
+            - KEYCLOAK_ADMIN=admin
+            - KEYCLOAK_ADMIN_PASSWORD=admin
+        command: 
+            - start-dev
+        depends_on:
+            - keycloak-db
+    
+    moments-db:
+        container_name: moments-db
+        image: postgres:15.3
+        ports:
+           - 5432:5432
+        environment:
+            - POSTGRES_PASSWORD=11620234Luna!
+            - POSTGRES_DB=moments
+            - POSTGRES_USER=postgres
+            - PGDATA=/var/lib/postgresql/data
+        volumes:
+            - postgres-moments:/var/lib/postgresql/data
+    
+    discovery-server:
+        container_name: discovery-server
+        build: /discovery-server
+        image: discovery-server
+        ports: 
+           - 8761:8761
+        environment:
+            - HOST_NAME=discovery
+        depends_on:
+            - moments-db
+        
+    catalog-service:
+        container_name: catalog-service
+        build: /catalog-service
+        image: catalog-service
+        ports: 
+           - 8081:8080
+        environment:
+            - DATABASE_PASSWORD=11620234Luna!
+            - EUREKA_ZONE=http://discovery-server:8761/eureka
+            - DATABASE_URL=jdbc:postgresql://moments-db:5432/moments 
+            - DATABASE_USER=postgres
+        depends_on:
+            - moments-db
+            - discovery-server
+            
+            
+    order-service:
+        container_name: order-service
+        build: /order-service
+        image: order-service
+        ports: 
+           - 8082:8080
+        environment:
+            - DATABASE_PASSWORD=11620234Luna!
+            - EUREKA_ZONE=http://discovery-server:8761/eureka
+            - DATABASE_URL=jdbc:postgresql://moments-db:5432/moments 
+            - DATABASE_USER=postgres
+        depends_on:
+            - moments-db
+            - discovery-server
+            
+    product-service:
+        container_name: product-service
+        build: /product-service
+        image: product-service
+        ports: 
+           - 8083:8080
+        environment:
+            - DATABASE_PASSWORD=11620234Luna!
+            - EUREKA_ZONE=http://discovery-server:8761/eureka
+            - DATABASE_URL=jdbc:postgresql://moments-db:5432/moments 
+            - DATABASE_USER=postgres
+        depends_on:
+            - moments-db
+            - discovery-server
+
+
+    api-gateway:
+        container_name: api-gateway
+        build: /api-gateway
+        image: api-gateway
+        ports: 
+           - 8181:8080
+        environment:
+            - EUREKA_ZONE=http://discovery-server:8761/eureka
+            - EUREKA_HOST=http://discovery-server:8761
+            - KEYCLOAK_TOKEN_URL=http://localhost:8080/realms/spring-boot-microservices-realm
+        depends_on:
+            - moments-db
+            - discovery-server
+            - keycloak-server
+
+volumes:
+  postgres-keycloak:
+    driver: local
+  postgres-moments:
+    driver: local
